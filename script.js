@@ -6,27 +6,33 @@ let counters = {
   cnt_13: 0, cnt_14: 0, cnt_15: 0
 };
 
-let accumPoints = {
-  muname: 0,
-  ikoma: 0,
-  mima: 0
-};
+let accumPoints = { muname:0, ikoma:0, mima:0 };
 
-// それぞれのundo用保存
-let prevAccumMuname = null;
-let prevAccumIkoma = null;
-let prevAccumMima = null;
+// リセット時の蓄積ポイントを保存（差分表示用）
+let resetValueMuname = 0;
+let resetValueIkoma = 0;
+let resetValueMima = 0;
+
+// Undo用の直前リセット値保存
+let undoResetValueMuname = null;
+let undoResetValueIkoma = null;
+let undoResetValueMima = null;
 
 function calcAccumPoints() {
-  accumPoints.muname = counters.cnt_1 + counters.cnt_4 * 15 + counters.cnt_7 * 15 + counters.cnt_10 * 15 + counters.cnt_13 * 30;
-  accumPoints.ikoma = counters.cnt_2 + counters.cnt_5 * 15 + counters.cnt_8 * 15 + counters.cnt_11 * 15 + counters.cnt_14 * 30;
-  accumPoints.mima = counters.cnt_3 + counters.cnt_6 * 15 + counters.cnt_9 * 15 + counters.cnt_12 * 15 + counters.cnt_15 * 30;
+  accumPoints.muname =
+    counters.cnt_1 + counters.cnt_4 * 15 + counters.cnt_7 * 15 + counters.cnt_10 * 15 + counters.cnt_13 * 30;
+
+  accumPoints.ikoma =
+    counters.cnt_2 + counters.cnt_5 * 15 + counters.cnt_8 * 15 + counters.cnt_11 * 15 + counters.cnt_14 * 30;
+
+  accumPoints.mima =
+    counters.cnt_3 + counters.cnt_6 * 15 + counters.cnt_9 * 15 + counters.cnt_12 * 15 + counters.cnt_15 * 30;
 }
 
 function updateAccumDisplay() {
-  document.getElementById('point_muname').innerText = accumPoints.muname;
-  document.getElementById('point_ikoma').innerText = accumPoints.ikoma;
-  document.getElementById('point_mima').innerText = accumPoints.mima;
+  document.getElementById('point_muname').innerText = Math.max(0, accumPoints.muname - resetValueMuname);
+  document.getElementById('point_ikoma').innerText = Math.max(0, accumPoints.ikoma - resetValueIkoma);
+  document.getElementById('point_mima').innerText = Math.max(0, accumPoints.mima - resetValueMima);
 }
 
 function updateResult() {
@@ -48,54 +54,53 @@ function addCount(key, step = 1) {
 
   calcAccumPoints();
   updateAccumDisplay();
-
   updateResult();
 }
 
 // 無名蓄積ポイントリセット＆戻る
 document.getElementById('resetMunameBtn').addEventListener('click', function() {
-  prevAccumMuname = accumPoints.muname;
-  accumPoints.muname = 0;
+  undoResetValueMuname = resetValueMuname;
+  resetValueMuname = accumPoints.muname;
   updateAccumDisplay();
   document.getElementById('undoMunameBtn').disabled = false;
 });
 document.getElementById('undoMunameBtn').addEventListener('click', function() {
-  if (prevAccumMuname !== null) {
-    accumPoints.muname = prevAccumMuname;
+  if(undoResetValueMuname !== null) {
+    resetValueMuname = undoResetValueMuname;
+    undoResetValueMuname = null;
     updateAccumDisplay();
-    prevAccumMuname = null;
     this.disabled = true;
   }
 });
 
 // 生駒蓄積ポイントリセット＆戻る
 document.getElementById('resetIkomaBtn').addEventListener('click', function() {
-  prevAccumIkoma = accumPoints.ikoma;
-  accumPoints.ikoma = 0;
+  undoResetValueIkoma = resetValueIkoma;
+  resetValueIkoma = accumPoints.ikoma;
   updateAccumDisplay();
   document.getElementById('undoIkomaBtn').disabled = false;
 });
 document.getElementById('undoIkomaBtn').addEventListener('click', function() {
-  if (prevAccumIkoma !== null) {
-    accumPoints.ikoma = prevAccumIkoma;
+  if(undoResetValueIkoma !== null) {
+    resetValueIkoma = undoResetValueIkoma;
+    undoResetValueIkoma = null;
     updateAccumDisplay();
-    prevAccumIkoma = null;
     this.disabled = true;
   }
 });
 
 // 美馬蓄積ポイントリセット＆戻る
 document.getElementById('resetMimaBtn').addEventListener('click', function() {
-  prevAccumMima = accumPoints.mima;
-  accumPoints.mima = 0;
+  undoResetValueMima = resetValueMima;
+  resetValueMima = accumPoints.mima;
   updateAccumDisplay();
   document.getElementById('undoMimaBtn').disabled = false;
 });
 document.getElementById('undoMimaBtn').addEventListener('click', function() {
-  if (prevAccumMima !== null) {
-    accumPoints.mima = prevAccumMima;
+  if(undoResetValueMima !== null) {
+    resetValueMima = undoResetValueMima;
+    undoResetValueMima = null;
     updateAccumDisplay();
-    prevAccumMima = null;
     this.disabled = true;
   }
 });
