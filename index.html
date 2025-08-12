@@ -2,77 +2,86 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>カバネリ設定判別</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>甲鉄城のカバネリ 設定判別</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .counter-row { margin-bottom: 8px; }
+    button { margin-left: 5px; }
+  </style>
 </head>
 <body>
-  <h1>カバネリ設定判別</h1>
 
-  <div id="counterContainer">
-    <div><span>1 無名(発光なし): </span><span id="cnt_1">0</span> 
-      <button onclick="addCount('cnt_1', 1)">+1</button> 
-      <button onclick="addCount('cnt_1', -1)">-1</button>
-    </div>
-    <div><span>2 生駒(発光なし): </span><span id="cnt_2">0</span> 
-      <button onclick="addCount('cnt_2', 1)">+1</button> 
-      <button onclick="addCount('cnt_2', -1)">-1</button>
-    </div>
-    <div><span>3 美馬(発光なし): </span><span id="cnt_3">0</span> 
-      <button onclick="addCount('cnt_3', 1)">+1</button> 
-      <button onclick="addCount('cnt_3', -1)">-1</button>
-    </div>
-    <div><span>4 無名(発光あり): </span><span id="cnt_4">0</span> 
-      <button onclick="addCount('cnt_4', 1)">+1</button> 
-      <button onclick="addCount('cnt_4', -1)">-1</button>
-    </div>
-    <div><span>5 生駒(発光あり): </span><span id="cnt_5">0</span> 
-      <button onclick="addCount('cnt_5', 1)">+1</button> 
-      <button onclick="addCount('cnt_5', -1)">-1</button>
-    </div>
-    <div><span>6 美馬(発光あり): </span><span id="cnt_6">0</span> 
-      <button onclick="addCount('cnt_6', 1)">+1</button> 
-      <button onclick="addCount('cnt_6', -1)">-1</button>
-    </div>
-    <div><span>7 無名(帯あり): </span><span id="cnt_7">0</span> 
-      <button onclick="addCount('cnt_7', 1)">+1</button> 
-      <button onclick="addCount('cnt_7', -1)">-1</button>
-    </div>
-    <div><span>8 生駒(帯あり): </span><span id="cnt_8">0</span> 
-      <button onclick="addCount('cnt_8', 1)">+1</button> 
-      <button onclick="addCount('cnt_8', -1)">-1</button>
-    </div>
-    <div><span>9 美馬(帯あり): </span><span id="cnt_9">0</span> 
-      <button onclick="addCount('cnt_9', 1)">+1</button> 
-      <button onclick="addCount('cnt_9', -1)">-1</button>
-    </div>
-    <div><span>10 無名(複合帯なし): </span><span id="cnt_10">0</span> 
-      <button onclick="addCount('cnt_10', 1)">+1</button> 
-      <button onclick="addCount('cnt_10', -1)">-1</button>
-    </div>
-    <div><span>11 生駒(複合帯なし): </span><span id="cnt_11">0</span> 
-      <button onclick="addCount('cnt_11', 1)">+1</button> 
-      <button onclick="addCount('cnt_11', -1)">-1</button>
-    </div>
-    <div><span>12 美馬(複合帯なし): </span><span id="cnt_12">0</span> 
-      <button onclick="addCount('cnt_12', 1)">+1</button> 
-      <button onclick="addCount('cnt_12', -1)">-1</button>
-    </div>
-    <div><span>13 無名(複合帯あり): </span><span id="cnt_13">0</span> 
-      <button onclick="addCount('cnt_13', 1)">+1</button> 
-      <button onclick="addCount('cnt_13', -1)">-1</button>
-    </div>
-    <div><span>14 生駒(複合帯あり): </span><span id="cnt_14">0</span> 
-      <button onclick="addCount('cnt_14', 1)">+1</button> 
-      <button onclick="addCount('cnt_14', -1)">-1</button>
-    </div>
-    <div><span>15 美馬(複合帯あり): </span><span id="cnt_15">0</span> 
-      <button onclick="addCount('cnt_15', 1)">+1</button> 
-      <button onclick="addCount('cnt_15', -1)">-1</button>
-    </div>
+<h1>甲鉄城のカバネリ 設定判別</h1>
+
+<div id="counters">
+  <div class="counter-row">1 無名(発光なし): <span id="cnt_1">0</span> 
+    <button onclick="addCount('cnt_1',1)">＋</button>
+    <button onclick="addCount('cnt_1',-1)">－</button>
   </div>
+  <div class="counter-row">2 生駒(発光なし): <span id="cnt_2">0</span> 
+    <button onclick="addCount('cnt_2',1)">＋</button>
+    <button onclick="addCount('cnt_2',-1)">－</button>
+  </div>
+  <div class="counter-row">3 美馬(発光なし): <span id="cnt_3">0</span> 
+    <button onclick="addCount('cnt_3',1)">＋</button>
+    <button onclick="addCount('cnt_3',-1)">－</button>
+  </div>
+  <div class="counter-row">4 無名(発光あり): <span id="cnt_4">0</span> 
+    <button onclick="addCount('cnt_4',1)">＋</button>
+    <button onclick="addCount('cnt_4',-1)">－</button>
+  </div>
+  <div class="counter-row">5 生駒(発光あり): <span id="cnt_5">0</span> 
+    <button onclick="addCount('cnt_5',1)">＋</button>
+    <button onclick="addCount('cnt_5',-1)">－</button>
+  </div>
+  <div class="counter-row">6 美馬(発光あり): <span id="cnt_6">0</span> 
+    <button onclick="addCount('cnt_6',1)">＋</button>
+    <button onclick="addCount('cnt_6',-1)">－</button>
+  </div>
+  <div class="counter-row">7 無名(帯あり): <span id="cnt_7">0</span> 
+    <button onclick="addCount('cnt_7',1)">＋</button>
+    <button onclick="addCount('cnt_7',-1)">－</button>
+  </div>
+  <div class="counter-row">8 生駒(帯あり): <span id="cnt_8">0</span> 
+    <button onclick="addCount('cnt_8',1)">＋</button>
+    <button onclick="addCount('cnt_8',-1)">－</button>
+  </div>
+  <div class="counter-row">9 美馬(帯あり): <span id="cnt_9">0</span> 
+    <button onclick="addCount('cnt_9',1)">＋</button>
+    <button onclick="addCount('cnt_9',-1)">－</button>
+  </div>
+  <div class="counter-row">10 無名(複合帯なし): <span id="cnt_10">0</span> 
+    <button onclick="addCount('cnt_10',1)">＋</button>
+    <button onclick="addCount('cnt_10',-1)">－</button>
+  </div>
+  <div class="counter-row">11 生駒(複合帯なし): <span id="cnt_11">0</span> 
+    <button onclick="addCount('cnt_11',1)">＋</button>
+    <button onclick="addCount('cnt_11',-1)">－</button>
+  </div>
+  <div class="counter-row">12 美馬(複合帯なし): <span id="cnt_12">0</span> 
+    <button onclick="addCount('cnt_12',1)">＋</button>
+    <button onclick="addCount('cnt_12',-1)">－</button>
+  </div>
+  <div class="counter-row">13 無名(複合帯あり): <span id="cnt_13">0</span> 
+    <button onclick="addCount('cnt_13',1)">＋</button>
+    <button onclick="addCount('cnt_13',-1)">－</button>
+  </div>
+  <div class="counter-row">14 生駒(複合帯あり): <span id="cnt_14">0</span> 
+    <button onclick="addCount('cnt_14',1)">＋</button>
+    <button onclick="addCount('cnt_14',-1)">－</button>
+  </div>
+  <div class="counter-row">15 美馬(複合帯あり): <span id="cnt_15">0</span> 
+    <button onclick="addCount('cnt_15',1)">＋</button>
+    <button onclick="addCount('cnt_15',-1)">－</button>
+  </div>
+</div>
 
-  <div id="result">発光確率: 0.00%</div>
+<hr>
+
+<p id="result">発光確率: 計算不可（対象カウンタ合計が0）</p>
+
+<hr>
+
 <div id="accumPoints">
   <p>
     無名蓄積ポイント: <span id="point_muname">0</span>
@@ -91,7 +100,6 @@
   </p>
 </div>
 
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
